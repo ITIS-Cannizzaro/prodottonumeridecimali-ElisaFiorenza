@@ -13,7 +13,10 @@ public class Fiorenza
 			{
 				case 1:
 					MoltiplicazioneArray();
-				break;
+					break;
+				case 2:
+					DueSequenze();
+					break;
 				default:
 					System.out.println("Scelta errata, riprova!");
 
@@ -23,22 +26,53 @@ public class Fiorenza
 	static void stampaMenu()
 	{
 		System.out.println("1 - Es n. 1 - Titolo es. moltiplicazione array");
+		System.out.println("2 - Es n. 2 - Titolo es. Due Sequenze");
 	}
-	static double[] Array1 = new double[6];
-	static double[] Array2 = new double[Array1.length / 2];
+	static double[] Array1es1 = new double[6];
+	static double[] Array2es1 = new double[Array1es1.length / 2];
 	static void MoltiplicazioneArray()
 	{
-		RiempiArray(Array1);
+		RiempiArray(Array1es1);
 		System.out.println("Ecco l'array da moltiplicare:");
-		StampaArray(Array1);
-		for(int i = 1,j = 0;j < Array2.length;i+=2,j++)
+		StampaArrayD(Array1es1);
+		for(int i = 1,j = 0;j < Array2es1.length;i+=2,j++)
 		{
-			int numeroInt = (int)((Array1[i-1] * Array1[i])*100);
-			Array2[j] = ((double)numeroInt/100);
+			int numeroInt = (int)((Array1es1[i-1] * Array1es1[i])*100);
+			Array2es1[j] = ((double)numeroInt/100);
 			numeroInt = 0;
 		}
 		System.out.println("Ecco l'array moltiplicato:");
-		StampaArray(Array2);
+		StampaArrayD(Array2es1);
+	}
+	static String[] Array1es2 = new String[5];
+	static String[] Array2es2 = new String[5];
+	static void DueSequenze()
+	{
+		boolean doppio = false;
+		System.out.println("Primo array:");
+		InserisciParole(Array1es2);
+		System.out.println("Secondo array:");
+		InserisciParole(Array2es2);
+		for(int i = 0; i < Array1es2.length;i++)
+		{
+			for(int j = 0; j < Array1es2.length;j++)
+			{
+				if(Array1es2[i].equals(Array2es2[j]))
+				{
+					if(doppio == false)
+					{
+						System.out.println("OK");
+						doppio = true;
+					}
+					System.out.println("|"+Array2es2[j]+"|"+(i+1)+"|"+(j+1)+"|");
+				}
+			}
+		}
+		if(doppio == false)
+		{
+			System.out.println("NO");
+		}
+		
 	}
 	static double[] RiempiArray(double[] array)
 	{
@@ -51,7 +85,23 @@ public class Fiorenza
 		}
 		return array;
 	}
-	static void StampaArray(double[] array)
+	static void InserisciParole(String[] array)
+	{
+		System.out.println("Inserisci delle parole:");
+		for(int i = 0; i < array.length; i++)
+		{
+			array[i] = in.nextLine();
+		}
+	}
+	static void StampaArrayD(double[] array)
+	{
+		for(int i = 0; i < array.length; i++)
+		{
+			System.out.print("|"+array[i]);
+		}
+		System.out.print("|\n");
+	}
+	static void StampaArrayS(String[] array)
 	{
 		for(int i = 0; i < array.length; i++)
 		{
